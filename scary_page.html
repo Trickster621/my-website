@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Секретная страница</title>
-    <style>
-        body {
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
+    <title>Зря ты сюда полез</title>
+    <meta property="og:title" content="Зря ты сюда полез">
+    <meta property="og:site_name" content="Зря ты сюда полез">
+    <meta property="og:image" content="images/Parad1st.png">
+    <meta property="og:description" content="Скример на второй странице">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:title" content="Зря ты сюда полез">
+    <meta name="twitter:site" content="@fps_boost">
+    <meta name="twitter:description" content="Скример">
+    <meta name="twitter:image:src" content="Parad1st.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&amp;display=swap" rel="stylesheet">
+    <style type="text/css">
+        p {
             margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
         }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         .overlay, .scare {
             position: fixed;
             top: 0;
@@ -17,89 +32,129 @@
             height: 100vh;
             width: 100vw;
         }
+
+        p.overlay-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: black;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .overlay-button {
+            display: inline-flex;
+            align-items: center;
+            height: 40px;
+            padding-right: 24px;
+            padding-left: 24px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+            border-radius: 4px;
+            margin: 4px;
+            cursor: pointer;
+        }
+
+        .overlay-buttons-wrapper {
+            margin: 24px -8px -8px;
+        }
+
+        #accept-button {
+            background-color: rgb(132, 94, 194);
+            color: white;
+        }
+
+        #decline-button {
+            color: rgb(132, 94, 194);
+            border: 2px solid rgb(132, 94, 194);
+        }
+
+        p.overlay-description {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        a.overlay-link {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgb(132, 94, 194);
+            line-height: 1;
+            position: relative;
+            margin-top: 16px;
+        }
+
+        a.overlay-link::before {
+            position: absolute;
+            content: "";
+            height: calc(50% + 4px);
+            width: calc(100% + 8px);
+            bottom: -4px;
+            left: -4px;
+            background-color: rgba(132, 94, 194, 0.1);
+        }
+
+        .overlay-body {
+            max-width: 512px;
+            text-align: center;
+            font-family: "Inter", sans-serif;
+        }
+
+        .overlay[hidden] {
+            display: none;
+        }
+
         .overlay {
+            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: #f5f6fa;
-            z-index: 2;
+            padding-right: 24px;
+            padding-left: 24px;
         }
-        .overlay[hidden] {
-            display: none;
+
+        .scare {
+            z-index: 1;
         }
-        .overlay-body {
-            text-align: center;
-            max-width: 500px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .overlay-title {
-            font-size: 24px;
-            margin-bottom: 16px;
-            color: black;
-        }
-        .overlay-description {
-            font-size: 16px;
-            margin-bottom: 16px;
-            color: gray;
-        }
-        .overlay-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #accept-button {
-            background-color: purple;
-            color: white;
-        }
-        #decline-button {
-            background-color: white;
-            color: purple;
-            border: 2px solid purple;
-        }
-        video {
-            width: 100%;
+
+        video#video {
             height: 100%;
+            width: 100%;
             object-fit: cover;
+        }
+
+        video#video::-webkit-media-controls-enclosure {
+            display:none !important;
         }
     </style>
 </head>
 <body>
-<div id="overlay" class="overlay">
-    <div class="overlay-body">
-        <p class="overlay-title">Подтвердите действие</p>
-        <p class="overlay-description">Этот сайт использует cookies для оптимизации. Вы хотите продолжить?</p>
-        <div>
-            <div id="accept-button" class="overlay-button">Принять</div>
-            <div id="decline-button" class="overlay-button">Отклонить</div>
+    <div id="overlay" class="overlay">
+        <div class="overlay-body">
+            <p class="overlay-title">Зря ты сюда полез</p>
+            <p class="overlay-description">Этот сайт использует cookies, чтобы собирать информацию об ошибках и улучшить сайт. Прими cookies для хорошей производительности.</p>
+            <div class="overlay-buttons-wrapper">
+                <div id="accept-button" class="overlay-button">Принять</div>
+                <div id="decline-button" class="overlay-button">Отклонить</div>
+            </div>
+            <a href="https://parad1st.github.io/" target="_blank" class="overlay-link">Пользовательское соглашение</a>
         </div>
     </div>
-</div>
-<div class="scare" style="display: none;">
-    <video id="video" autoplay loop>
-    <source src="assets/video.mp4" type="video/mp4">
-    Ваш браузер не поддерживает видео.
-</video>
-</div>
-<script>
-    const overlay = document.getElementById("overlay");
-    const video = document.getElementById("video");
-    const acceptButton = document.getElementById("accept-button");
-    const declineButton = document.getElementById("decline-button");
+    <div class="scare">
+        <video id="video" autoplay loop>
+            <source src="assets/video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+    </div>
+    <script type="text/javascript">
+        const video = document.getElementById("video");
+        const overlay = document.getElementById("overlay");
+        const declineButton = document.getElementById("decline-button");
+        const acceptButton = document.getElementById("accept-button");
 
-    function startScare() {
-        overlay.style.display = 'none';  // Скрыть оверлей
-        document.querySelector('.scare').style.display = 'block';  // Показать видео
-        video.play();
-    }
-
-    acceptButton.addEventListener("click", startScare);
-    declineButton.addEventListener("click", startScare);
-</script>
-</body>
-</html>
+      
