@@ -3,41 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт на GitHub Pages</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Мой сайт с видео</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000; /* Черный фон, чтобы выделить видео */
+        }
+        video {
+            max-width: 100%;
+            max-height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Добро пожаловать на мой сайт!</h1>
-    </header>
-
-    <section>
-        <h2>Мои страницы</h2>
-        <ul>
-            <li><a href="page1.html">Страница 1</a></li>
-            <li><a href="page2.html">Страница 2</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Медиа</h2>
-        <h3>Изображение:</h3>
-        <img src="assets/your-image.jpg" alt="Пример изображения">
-        
-        <h3>Видео:</h3>
-        <video width="320" height="240" controls>
-            <source src="assets/your-video.mp4" type="video/mp4">
-            Ваш браузер не поддерживает видео.
-        </video>
-    </section>
-
-    <footer>
-        <p>Мой сайт на GitHub Pages. Все права защищены.</p>
-    </footer>
+    <!-- Видео -->
+    <video controls>
+        <source src="assets/Озон.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
 </body>
 </html>
-<video width="320" height="240" controls>
-  <source src="assets/Озон.mp4" type="video/mp4">
-  Ваш браузер не поддерживает видео.
-</video>
-
